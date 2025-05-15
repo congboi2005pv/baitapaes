@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AES File Encryption/Decryption</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+      }
+
+      input[type="file"],
+      input[type="password"],
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+
+      button[type="submit"] {
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background: #0056b3;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 15px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .error {
+        color: red;
+        margin-top: 15px;
+      }
+
+      .message {
+        color: green;
+        margin-top: 15px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .action-buttons button {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>AES File Encryption/Decryption</h1>
+      <form method="POST" action="/" enctype="multipart/form-data">
+        <input type="file" name="file" required /><br />
+        <input
+          type="password"
+          name="key"
+          placeholder="Enter key"
+          required
+        /><br />
+        <div class="action-buttons">
+          <button type="submit" name="action" value="encrypt">Encrypt</button>
+          <button type="submit" name="action" value="decrypt">Decrypt</button>
+        </div>
+      </form>
+
+      {% if download_url %}
+      <p class="message">{{ message }}</p>
+      <a href="{{ download_url }}">Download Encrypted File</a>
+      {% endif %} {% if download_url_decrypted %}
+      <p class="message">{{ message }}</p>
+      <a href="{{ download_url_decrypted }}">Download Decrypted File</a>
+      {% endif %} {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
